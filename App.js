@@ -1,49 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React,{ useState, useEffect } from 'react';
+import { StyleSheet, View, FlatList , SafeAreaView} from 'react-native';
+import ListItme from './components/ListItem';
+import  dummyArticles from "./dummies/articles";
+import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff'
   },
-  itemContainer: {
-    height: 100,
-    width: "100%",
-    borderColor: "gray",
-    borderWidth: 1,
-    flexDirection: "row"
-  },
-  leftContainer: {
-    width: 100
-  },
-  rightContainer: {
-    flex: 1
-  }
+  
 });
 
 export default function App() {
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    alert(Constants.manifest.extra.newsApiKey);
+    const timer = setTimeout(() => {
+      setArticles(dummyArticles);
+    }, 2000)
+    return () => clearTimeout(timer);
+  } ,[]);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.itemContainer}>
-        <View style={styles.leftContainer}>
-          <Image 
-            style={{width: 100, height: 100}}
-            source={{url: "https://picsum.photos/200/300"}}
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={articles}
+        renderItem={({item}) => (
+          <ListItme
+            imageUrl={item.urlToImage}
+            title={item.title}
+            author={item.author}
           />
-        </View>
-        <View style={styles.rightContainer}>
-          <Text numberOfLines={3}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </Text>
-          <Text>
-            ReactNews
-          </Text>
-        </View>
-      </View>
-    </View>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </SafeAreaView>
   );
 }
 
