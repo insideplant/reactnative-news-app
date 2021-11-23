@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const ListItme = (props) => {
-  const {imageUrl, title, author, onPress} = props
+const ListItem = ({imageUrl, title, author, onPress}) => {
 
   return (
     <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
@@ -53,4 +52,4 @@ const ListItme = (props) => {
   )
 }
 
-export default ListItme
+export default ListItem
