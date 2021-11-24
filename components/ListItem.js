@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-
 const styles = StyleSheet.create({
   itemContainer: {
     height: 100,
@@ -36,7 +35,7 @@ const ListItem = ({imageUrl, title, author, onPress}) => {
         {!!imageUrl && (
           <Image 
             style={{width: 100, height: 100}}
-            source={{url: imageUrl }}
+            source={{uri: imageUrl }}
           />
         )}
       </View>
