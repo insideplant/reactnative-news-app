@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.zhongzhi.news-app"
     },
     "extra": {
       "newsApiKey": "d09946464191457e83504534941cb707"
